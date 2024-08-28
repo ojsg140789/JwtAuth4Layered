@@ -1,3 +1,4 @@
+using JwtAuth4Layered.Api.Models;
 using JwtAuth4Layered.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,7 @@ namespace JwtAuth4Layered.Api.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            var token = await _authService.AuthenticateAsync(request.Username, request.Password);
+            var token = await _authService.AuthenticateAsync(request.Correo, request.Password);
 
             if (token == null)
             {
@@ -26,11 +27,5 @@ namespace JwtAuth4Layered.Api.Controllers
 
             return Ok(new { Token = token });
         }
-    }
-
-    public class LoginRequest
-    {
-        public string Username { get; set; }
-        public string Password { get; set; }
     }
 }
