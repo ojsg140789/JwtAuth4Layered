@@ -19,10 +19,10 @@ namespace JwtAuth4Layered.Application.Services
             _secretKey = configuration["JwtSettings:Secret"];
         }
 
-        public async Task<string> AuthenticateAsync(string username, string password)
+        public async Task<string> AuthenticateAsync(string correo, string password)
         {
-            var user = await _userRepository.GetUserByUsernameAsync(username);
-            if (user == null || !VerifyPasswordHash(password, user.PasswordHash))
+            var user = await _userRepository.GetUserByUsernameAsync(correo);
+            if (user == null || !VerifyPasswordHash(password, user.Password))
             {
                 return null;
             }
@@ -36,7 +36,7 @@ namespace JwtAuth4Layered.Application.Services
             return true;
         }
 
-        private string GenerateJwtToken(User user)
+        private string GenerateJwtToken(Cliente cliente)
         {
             var key = Encoding.ASCII.GetBytes(_secretKey);
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -44,7 +44,7 @@ namespace JwtAuth4Layered.Application.Services
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.Name, user.Username)
+                    new Claim(ClaimTypes.Name, cliente.Correo)
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(30),
                 Issuer = "JwtAuth4Layered", // Define your issuer

@@ -4,6 +4,6 @@ namespace JwtAuth4Layered.Domain.Interfaces
 {
     public interface IUserRepository
     {
-        Task<User> GetUserByUsernameAsync(string username);
+        Task<Cliente> GetUserByUsernameAsync(string correo);
     }
 }

@@ -13,10 +13,10 @@ namespace JwtAuth4Layered.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<User> GetUserByUsernameAsync(string username)
+        public async Task<Cliente> GetUserByUsernameAsync(string correo)
         {
-            return await _context.Users
-                                 .SingleOrDefaultAsync(u => u.Username == username);
+            return await _context.Clientes
+                                 .SingleOrDefaultAsync(u => u.Correo == correo);
         }
     }
 }
