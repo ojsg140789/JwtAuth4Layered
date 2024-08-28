@@ -9,7 +9,6 @@ namespace JwtAuth4Layered.Domain.Entities
 
         [Required]
         public int CompraId { get; set; }
-        public Compra Compra { get; set; }
 
         [Required]
         public int ArticuloId { get; set; }

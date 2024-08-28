@@ -25,6 +25,10 @@ builder.Services.AddScoped<IClienteService, ClienteService>();
 builder.Services.AddScoped<ITiendaService, TiendaService>();
 builder.Services.AddScoped<IArticuloService, ArticuloService>();
 
+builder.Services.AddScoped<ICompraService, CompraService>();
+builder.Services.AddScoped<ICompraRepository, CompraRepository>();
+builder.Services.AddScoped<IDetalleCompraRepository, DetalleCompraRepository>();
+
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 var secretKey = jwtSettings["Secret"];
 var key = Encoding.ASCII.GetBytes(secretKey);

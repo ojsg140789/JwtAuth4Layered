@@ -17,11 +17,11 @@ namespace JwtAuth4Layered.Infrastructure
         public DbSet<Compra> Compras { get; set; }
         public DbSet<DetalleCompra> DetallesCompras { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<DetalleCompra>()
-                .Property(d => d.Subtotal)
-                .HasComputedColumnSql("[Cantidad] * [Precio]");
-        }
+        // protected override void OnModelCreating(ModelBuilder modelBuilder)
+        // {
+        //     modelBuilder.Entity<DetalleCompra>()
+        //         .Property(d => d.Subtotal)
+        //         .HasComputedColumnSql("[Cantidad] * [Precio]");
+        // }
     }
 }
