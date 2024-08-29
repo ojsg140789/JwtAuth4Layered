@@ -33,7 +33,10 @@ namespace JwtAuth4Layered.Application.Services
         private bool VerifyPasswordHash(string password, string storedHash)
         {
             // Implementar verificación de hash de la contraseña
-            return true;
+            if(password == storedHash) {
+                return true;
+            }
+            return false;
         }
 
         private string GenerateJwtToken(Cliente cliente)
