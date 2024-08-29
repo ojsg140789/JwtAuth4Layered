@@ -18,14 +18,14 @@ namespace JwtAuth4Layered.Api.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            var token = await _authService.AuthenticateAsync(request.Correo, request.Password);
+            var user = await _authService.AuthenticateAsync(request.Correo, request.Password);
 
-            if (token == null)
+            if (user.Token == null)
             {
                 return Unauthorized();
             }
 
-            return Ok(new { Token = token });
+            return Ok(new { Token = user.Token, Id = user.UserId });
         }
     }
 }

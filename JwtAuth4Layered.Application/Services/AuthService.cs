@@ -19,15 +19,15 @@ namespace JwtAuth4Layered.Application.Services
             _secretKey = configuration["JwtSettings:Secret"];
         }
 
-        public async Task<string> AuthenticateAsync(string correo, string password)
+        public async Task<(int UserId, string Token)> AuthenticateAsync(string correo, string password)
         {
             var user = await _userRepository.GetUserByUsernameAsync(correo);
             if (user == null || !VerifyPasswordHash(password, user.Password))
             {
-                return null;
+                return (0, null);
             }
-
-            return GenerateJwtToken(user);
+            var token = GenerateJwtToken(user);
+            return (user.Id, token);
         }
 
         private bool VerifyPasswordHash(string password, string storedHash)
