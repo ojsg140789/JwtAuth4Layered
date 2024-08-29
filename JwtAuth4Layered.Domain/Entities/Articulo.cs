@@ -26,6 +26,6 @@ namespace JwtAuth4Layered.Domain.Entities
 
         [Required]
         public int TiendaId { get; set; }
-        public Tienda Tienda { get; set; }
+        //public Tienda Tienda { get; set; }
     }
 }

@@ -24,11 +24,13 @@ namespace JwtAuth4Layered.Application.Services.Interfaces
 
         public Task AddClienteAsync(Cliente cliente)
         {
+            cliente.Password = BCrypt.Net.BCrypt.HashPassword(cliente.Password);
             return _clienteRepository.AddClienteAsync(cliente);
         }
 
         public Task UpdateClienteAsync(Cliente cliente)
         {
+            cliente.Password = BCrypt.Net.BCrypt.HashPassword(cliente.Password);
             return _clienteRepository.UpdateClienteAsync(cliente);
         }
 

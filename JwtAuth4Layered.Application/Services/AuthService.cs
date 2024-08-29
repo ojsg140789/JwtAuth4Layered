@@ -22,7 +22,7 @@ namespace JwtAuth4Layered.Application.Services
         public async Task<(int UserId, string Token)> AuthenticateAsync(string correo, string password)
         {
             var user = await _userRepository.GetUserByUsernameAsync(correo);
-            if (user == null || !VerifyPasswordHash(password, user.Password))
+            if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.Password))
             {
                 return (0, null);
             }
